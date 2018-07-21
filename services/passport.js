@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const FacebookStategy = require('passport-facebook').Strategy;
 const TwitterStrategy = require('passport-twitter').Strategy;
-const LinkedinStrategy = require('passport-linkedin').Strategy;
+const LinkedinStrategy = require('passport-linkedin-oauth2').Strategy;
 const LocalStrategy = require('passport-local').Strategy;
 const keys = require('../config/keys');
 const User = require('../models/User');
@@ -92,8 +92,8 @@ passport.use(new TwitterStrategy({
 );
 
 passport.use(new LinkedinStrategy({
-    consumerKey: keys.linkedinApiKey,
-    consumerSecret: keys.linkedinSecretKey,
+    clientID: keys.linkedinApiKey,
+    clientSecret: keys.linkedinSecretKey,
     callbackURL: '/auth/linkedin/callback',
     proxy: true
     }, (accessToken, refreshToken, profile, done) => {
