@@ -24,8 +24,8 @@ router.get('/auth/linkedin', passport.authenticate('linkedin', {
 
 router.get('/auth/google/callback', passport.authenticate('google'));
 router.get('/auth/facebook/callback', passport.authenticate('facebook'));
-router.get('/auth/facebook/callback', passport.authenticate('twitter'));
-router.get('/auth/facebook/callback', passport.authenticate('linkedin'));
+router.get('/auth/twitter/callback', passport.authenticate('twitter'));
+router.get('/auth/linkedin/callback', passport.authenticate('linkedin'));
 
 router.get('/api/logout', (req, res) => {
     req.logout();
