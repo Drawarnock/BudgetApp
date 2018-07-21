@@ -90,3 +90,27 @@ passport.use(new TwitterStrategy({
             });
     })
 );
+
+passport.use(new LinkedinStrategy({
+    consumerKey: keys.linkedinApiKey,
+    consumerSecret: keys.linkedinSecretKey,
+    callbackURL: '/auth/linkedin/callback',
+    proxy: true
+    }, (accessToken, refreshToken, profile, done) => {
+        console.log(profile);
+        User.findOne({ userProviderId: profile.id,
+            providerName: profile.provider}).then(user => {
+                if(user) {
+                    // User exists in database
+                    console.log(user);
+                    done(null, user);
+                } else {
+                    new User({
+                        userProviderId: profile.id,
+                        providerName: profile.provider
+                    }).save()
+                        .then(user => done(null, user));
+                }
+            });
+    })
+);
