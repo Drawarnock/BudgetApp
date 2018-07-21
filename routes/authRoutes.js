@@ -18,7 +18,7 @@ router.get('/auth/twitter', passport.authenticate('twitter', {
 );
 
 router.get('/auth/linkedin', passport.authenticate('linkedin', {
-    scope: ['r_basicprofile', 'r_emailadress']
+    scope: ['r_emailaddress', 'r_basicprofile']
     })
 );
 
