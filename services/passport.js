@@ -67,7 +67,7 @@ passport.use(new FacebookStategy({
     })
 );
 
-passport.use(new TwitterStategy({
+passport.use(new TwitterStrategy({
     clientID: keys.twitterConsumerKey,
     clientSecret: keys.twitterConsumerSecret,
     callbackURL: '/auth/twitter/callback',
