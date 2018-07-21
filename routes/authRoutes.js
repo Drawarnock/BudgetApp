@@ -8,7 +8,7 @@ router.get('/auth/google', passport.authenticate('google', {
 );
 
 router.get('/auth/facebook', passport.authenticate('facebook', {
-    scope: ['read_stream', 'publish_actions'] 
+    scope: ['public_profile', 'email'] 
     })
 );
 
