@@ -27,4 +27,10 @@ router.get('/auth/facebook/callback', passport.authenticate('facebook'));
 router.get('/auth/facebook/callback', passport.authenticate('twitter'));
 router.get('/auth/facebook/callback', passport.authenticate('linkedin'));
 
+router.get('/api/logout', (req, res) => {
+    req.logout();
+    res.send(req.user);
+});
+router.get('/api/current_user', (req, res) => res.send(req.user));
+
 module.exports = router;
