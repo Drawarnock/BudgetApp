@@ -68,8 +68,8 @@ passport.use(new FacebookStategy({
 );
 
 passport.use(new TwitterStrategy({
-    clientID: keys.twitterConsumerKey,
-    clientSecret: keys.twitterConsumerSecret,
+    consumerKey: keys.twitterConsumerKey,
+    consumerSecret: keys.twitterSecretKey,
     callbackURL: '/auth/twitter/callback',
     proxy: true
     }, (accessToken, refreshToken, profile, done) => {
