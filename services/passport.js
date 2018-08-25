@@ -8,15 +8,13 @@ const LocalStrategy = require('passport-local').Strategy;
 const keys = require('../config/keys');
 const User = require('../models/User');
 
-// const User = mongoose.model('User');
-
 passport.serializeUser((user, done) => {
     done(null, user.id);
 });
 
-passport.deserializeUser((id, done) => {
-    User.findById(id)
-        .then(user => done(null, user));
+passport.deserializeUser( async (id, done) => {
+    const user = await User.findById(id);
+    done(null, user);
 });
 
 passport.use(new GoogleStrategy({
@@ -24,22 +22,21 @@ passport.use(new GoogleStrategy({
     clientSecret: keys.googleSecret,
     callbackURL: '/auth/google/callback',
     proxy: true
-    }, (accessToken, refreshToken, profile, done) => {
-        // console.log(profile);
-        User.findOne({ userProviderId: profile.id,
-            providerName: profile.provider}).then(user => {
-                if(user) {
-                    // User exists in database
-                    console.log(user);
-                    done(null, user);
-                } else {
-                    new User({
+    }, async (accessToken, refreshToken, profile, done) => {
+            const existingUser = await User.findOne({
+                userProviderId: profile.id,
+                providerName: profile.provider
+            });
+            if(existingUser) {
+                done(null, existingUser);
+            } else {
+                const newUser = await new User({
                         userProviderId: profile.id,
                         providerName: profile.provider
-                    }).save()
-                        .then(user => done(null, user));
-                }
-            });
+                    }).save();
+                done(null, newUser)
+            }
+           
     })
 );
 
@@ -48,22 +45,20 @@ passport.use(new FacebookStategy({
     clientSecret: keys.facebookSecret,
     callbackURL: '/auth/facebook/callback',
     proxy: true
-    }, (accessToken, refreshToken, profile, done) => {
-        console.log(profile);
-        User.findOne({ userProviderId: profile.id,
-            providerName: profile.provider}).then(user => {
-                if(user) {
-                    // User exists in database
-                    console.log(user);
-                    done(null, user);
-                } else {
-                    new User({
-                        userProviderId: profile.id,
-                        providerName: profile.provider
-                    }).save()
-                        .then(user => done(null, user));
-                }
+    }, async (accessToken, refreshToken, profile, done) => {
+            const existingUser = await User.findOne({
+                userProviderId: profile.id,
+                providerName: profile.provider
             });
+            if(existingUser) {
+                done(null, existingUser);
+            } else {
+                const newUser = await new User({
+                    userProviderId: profile.id,
+                    providerName: profile.provider
+                }).save();
+                done(null, newUser);
+            }
     })
 );
 
@@ -72,22 +67,20 @@ passport.use(new TwitterStrategy({
     consumerSecret: keys.twitterSecretKey,
     callbackURL: '/auth/twitter/callback',
     proxy: true
-    }, (accessToken, refreshToken, profile, done) => {
-        console.log(profile);
-        User.findOne({ userProviderId: profile.id,
-            providerName: profile.provider}).then(user => {
-                if(user) {
-                    // User exists in database
-                    console.log(user);
-                    done(null, user);
-                } else {
-                    new User({
-                        userProviderId: profile.id,
-                        providerName: profile.provider
-                    }).save()
-                        .then(user => done(null, user));
-                }
+    }, async (accessToken, refreshToken, profile, done) => {
+            const existingUser = await User.findOne({
+                userProviderId: profile.id,
+                providerName: profile.provider
             });
+            if(existingUser) {
+                done(null, existingUser);
+            } else {
+                const newUser = await new User({
+                    userProviderId: profile.id,
+                    providerName: profile.provider
+                }).save();
+                done(null, newUser);
+            }
     })
 );
 
@@ -96,21 +89,19 @@ passport.use(new LinkedinStrategy({
     clientSecret: keys.linkedinSecretKey,
     callbackURL: '/auth/linkedin/callback',
     proxy: true
-    }, (accessToken, refreshToken, profile, done) => {
-        console.log(profile);
-        User.findOne({ userProviderId: profile.id,
-            providerName: profile.provider}).then(user => {
-                if(user) {
-                    // User exists in database
-                    console.log(user);
-                    done(null, user);
-                } else {
-                    new User({
-                        userProviderId: profile.id,
-                        providerName: profile.provider
-                    }).save()
-                        .then(user => done(null, user));
-                }
+    }, async (accessToken, refreshToken, profile, done) => {
+            const existingUser = await User.findOne({
+                userProviderId: profile.id,
+                providerName: profile.provider
             });
+            if(existingUser) {
+                done(null, existingUser);
+            } else {
+                const newUser = new User({
+                    userProviderId: profile.id,
+                    providerName: profile.provider
+                }).save();
+                done(null, newUser);
+            }
     })
 );
