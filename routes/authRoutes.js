@@ -22,14 +22,14 @@ router.get('/auth/linkedin', passport.authenticate('linkedin', {
     })
 );
 
-router.get('/auth/google/callback', passport.authenticate('google'));
+router.get('/auth/google/callback', passport.authenticate('google'), (req, res) => res.redirect('/dashboard'));
 router.get('/auth/facebook/callback', passport.authenticate('facebook'));
 router.get('/auth/twitter/callback', passport.authenticate('twitter'));
 router.get('/auth/linkedin/callback', passport.authenticate('linkedin'));
 
 router.get('/api/logout', (req, res) => {
     req.logout();
-    res.send(req.user);
+    res.redirect('/');
 });
 router.get('/api/current_user', (req, res) => res.send(req.user));
 

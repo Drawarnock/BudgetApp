@@ -4,10 +4,10 @@ import './SignUpScreen.css';
 const signUpScreen = () => {
     return(
         <div className="SignUpScreen">
-            <a href="/auth/google" className="button button--google">Sign Up with Google</a>
-            <a href="/auth/facebook" className="button button--fb">Sign Up with Facebook</a>
-            <a href="/auth/linkedin" className="button button--linkedin">Sign Up with Linkedin</a>
-            <a href="/auth/twitter" className="button button--twitter">Sign Up with Twitter</a>
+            <a href="/auth/google" className="button button--google">Log in with Google</a>
+            <a href="/auth/facebook" className="button button--fb">Log in with Facebook</a>
+            <a href="/auth/linkedin" className="button button--linkedin">Log in with Linkedin</a>
+            <a href="/auth/twitter" className="button button--twitter">Log in with Twitter</a>
             <span className="or" >OR</span>
             <form className="form">
                 <label>Username</label>
