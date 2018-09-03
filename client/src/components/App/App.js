@@ -8,6 +8,7 @@ import { connect } from 'react-redux';
 import { fetchUser } from '../../store/actions/actions';
 import Landing from '../Landing/Landing';
 import Dashboard from '../Dashboard/Dashboard';
+import NewPlan from '../Plans/NewPlan';
 
 class App extends Component {
 
@@ -22,7 +23,8 @@ class App extends Component {
           <Navbar />
           <Route exact path="/" component={Landing} />
           <Route path="/signup" component={SignUpScreen} />
-          <Route path="/dashboard" component={Dashboard} />
+          <Route exact path="/dashboard" component={Dashboard} />
+          <Route path="/dashboard/new-plan/" component={NewPlan}/>
           <Footer />
         </div>
       </BrowserRouter>

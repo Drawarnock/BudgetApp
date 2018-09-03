@@ -1,0 +1,8 @@
+.Dashboard {
+    margin: 40px;
+    height: 80vh;
+    padding: 10px 20px;
+    box-shadow: 0 0 5px 1px #121212;
+    display: flex;
+    flex-wrap: wrap;
+}

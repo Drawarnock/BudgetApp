@@ -1,0 +1,31 @@
+.Plan {
+    border-radius: 5px;
+    border: 1px solid lightgray;
+    background-color: #9c9999;
+    width: 48%;
+    height: 220px;
+    padding: 10px 20px;
+    margin: 10px;
+    display: inline-block;
+}
+
+.Plan__title {
+    text-align: center;
+}
+
+.Plan__button {
+    display: inline-block;
+}
+
+.Plan--new {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition:  all .3s ease;
+}
+
+.Plan.Plan--new:hover {
+    cursor: pointer;
+    background-color: black;
+    color: white;
+}
