@@ -1,4 +1,4 @@
-.Plan {
+.PlanThumbnail {
     border-radius: 5px;
     border: 1px solid lightgray;
     background-color: #9c9999;
@@ -9,22 +9,22 @@
     display: inline-block;
 }
 
-.Plan__title {
+.PlanThumbnail__title {
     text-align: center;
 }
 
-.Plan__button {
+.PlanThumbnail__button {
     display: inline-block;
 }
 
-.Plan--new {
+.PlanThumbnail--new {
     display: flex;
     justify-content: center;
     align-items: center;
     transition:  all .3s ease;
 }
 
-.Plan.Plan--new:hover {
+.PlanThumbnail.PlanThumbnail--new:hover {
     cursor: pointer;
     background-color: black;
     color: white;

@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom';
 
 const addPlan = () => {
     return(
-        <div className="Plan Plan--new">
-            <h3 className="Plan__title"><Link to ="/dashboard/new-plan">Add New Plan...</Link></h3>
+        <div className="PlanThumbnail PlanThumbnail--new">
+            <h3 className="PlanThumbnail__title"><Link to ="/dashboard/new-plan">Add New Plan...</Link></h3>
         </div>
     )
 }
