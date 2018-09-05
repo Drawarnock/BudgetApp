@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './Dashboard.css';
 import PlanThumbnail from '../Plans/PlanThumbnail';
 import AddPlan from '../Plans/AddPlan';
+import axios from 'axios';
 
 class Dashboard extends Component {
 
@@ -9,14 +10,31 @@ class Dashboard extends Component {
         plans: []
     }
 
-    render() {
+    deletePlanHandler = async id => {
+        const plans = [...this.state.plans];
+        const delIndex = plans.findIndex(plan => plan.id === id);
+        plans.splice(delIndex, 1);
+        await this.setState({plans: plans});
+        await axios.delete('/api/plans/' + id);
+    }
 
-        const description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque lacinia risus enim. Donec imperdiet, lacus non dapibus rhoncus, ex mauris fringilla urna, eget viverra enim leo et lectus.";
+    componentDidMount() {
+        axios.get('/api/plans/').then(async response => {
+            await this.setState({
+                plans: this.state.plans.concat(response.data)
+            });
+        })
+        .catch(error => {
+            console.log(error);
+        });
+    }
+
+    render() {
+        const plansList = this.state.plans.map(plan => <PlanThumbnail   key={plan._id} title={plan.title} description={plan.description} budget_sum={plan.budget_sum} onDelete={() => this.deletePlanHandler(plan._id) } /> )
 
         return(
             <div className="Dashboard">
-                <PlanThumbnail title="My plan" description={description} budget_sum="3021" />
-                <PlanThumbnail title="Computer" description={description} budget_sum="123" />
+                {plansList}
                 <AddPlan />
             </div>
         )

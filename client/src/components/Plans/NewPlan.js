@@ -12,8 +12,6 @@ class NewPlan extends Component {
     }
 
     onChangeValueHandler = event => {
-        console.log(this.state);
-        console.log(event.target);
         this.setState({
             plan: {
                 ...this.state.plan,
@@ -24,7 +22,7 @@ class NewPlan extends Component {
     }
 
     onSubmitFormHandler = event => {
-        event.prevenDefault();
+        event.preventDefault();
         axios.post('http://localhost:3000/api/plans', this.state.plan)
             .then(response => {
             console.log(response);
