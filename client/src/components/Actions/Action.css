@@ -1,0 +1,9 @@
+.Action {
+    flex: 1;
+    border: 1px solid red;
+}
+
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}

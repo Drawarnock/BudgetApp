@@ -18,6 +18,10 @@ class Dashboard extends Component {
         await axios.delete('/api/plans/' + id);
     }
 
+    onViewDetailsHandler = id => {
+        this.props.history.push(this.props.location.pathname + 'full-plan/' + id)
+    }
+
     componentDidMount() {
         axios.get('/api/plans/').then(async response => {
             await this.setState({
@@ -30,7 +34,13 @@ class Dashboard extends Component {
     }
 
     render() {
-        const plansList = this.state.plans.map(plan => <PlanThumbnail   key={plan._id} title={plan.title} description={plan.description} budget_sum={plan.budget_sum} onDelete={() => this.deletePlanHandler(plan._id) } /> )
+        const plansList = this.state.plans.map(plan => 
+            <PlanThumbnail key={plan._id} 
+                title={plan.title} 
+                description={plan.description} 
+                budget_sum={plan.budget_sum}
+                onViewDetails = {() => this.onViewDetailsHandler(plan._id)} 
+                onDelete={() => this.deletePlanHandler(plan._id) } /> )
 
         return(
             <div className="Dashboard">

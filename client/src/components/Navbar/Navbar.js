@@ -13,7 +13,7 @@ class Navbar extends Component {
         if(this.props.authenticated) {
             conditionalContent = (
             <Auxiliary>
-            <li><Link to="/dashboard">Dashboard</Link></li>
+            <li><Link to="/dashboard/">Dashboard</Link></li>
             <li><a href="/api/logout">Logout</a></li>
             </Auxiliary>
             )

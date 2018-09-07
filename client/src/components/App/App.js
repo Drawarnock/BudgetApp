@@ -9,6 +9,7 @@ import { fetchUser } from '../../store/actions/actions';
 import Landing from '../Landing/Landing';
 import Dashboard from '../Dashboard/Dashboard';
 import NewPlan from '../Plans/NewPlan';
+import DetailedPlan from '../Plans/DetailedPlan';
 
 class App extends Component {
 
@@ -23,8 +24,9 @@ class App extends Component {
           <Navbar />
           <Route exact path="/" component={Landing} />
           <Route path="/signup" component={SignUpScreen} />
-          <Route exact path="/dashboard" component={Dashboard} />
+          <Route exact path="/dashboard/" component={Dashboard} />
           <Route path="/dashboard/new-plan/" component={NewPlan}/>
+          <Route path="/dashboard/full-plan/:id" component={DetailedPlan}/>
           <Footer />
         </div>
       </BrowserRouter>

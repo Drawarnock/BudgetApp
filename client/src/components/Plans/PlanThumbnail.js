@@ -8,7 +8,7 @@ const planThumbnail = props => {
             <p>{props.description}</p>
             <b>Summary: <span style={{color: "green"}}>{props.budget_sum}</span></b>
             <button className="PlanThumbnail__button" onClick = {props.onDelete}>Delete Plan</button>
-            <button className="PlanThumbnail__button">View Plan</button>
+            <button className="PlanThumbnail__button" onClick={props.onViewDetails} >View Plan</button>
         </div>
     )
 }
